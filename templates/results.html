@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results - Emotion Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Previous Results</h1>
+        <h2>User: {{ username }}</h2>
+
+        {% if user_data %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Emotion</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in user_data %}
+                <tr>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No previous results found.</p>
+        {% endif %}
+
+        <div class="navigation">
+            <a href="{{ url_for('dashboard', username=username) }}">Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

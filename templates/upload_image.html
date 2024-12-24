@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Image - Emotion Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload an Image</h1>
+        <form method="POST" action="{{ url_for('upload_image', username=username) }}" enctype="multipart/form-data">
+            <label for="image">Select an image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+            <button type="submit">Upload</button>
+        </form>
+
+        {% if error %}
+        <div class="error-message">
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+
+        {% if success %}
+        <div class="success-message">
+            <p>Emotion detected successfully: {{ emotion }}</p>
+        </div>
+        {% endif %}
+
+        <div class="navigation">
+            <a href="{{ url_for('dashboard', username=username) }}">Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Emotion Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome, User {{ username }}</h1>
+        </header>
+        <nav>
+            <a href="{{ url_for('results', username=username) }}">Results</a>
+            <a href="{{ url_for('upload_image', username=username) }}">Upload an Image</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+            <a href="{{ url_for('delete_confirmation', username=username) }}">Delete Account</a>
+        </nav>
+        <main>
+        <h2>Emotion Detection Results</h2>
+
+        {% if success %}
+        <div class="success-message">
+            <p>Emotion detected successfully: {{ emotion }}</p>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="error-message">
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+
+        {% if user_data %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Emotion</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in user_data %}
+                <tr>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No data available.</p>
+        {% endif %}
+    </div>
+</main>
+</body>
+</html>

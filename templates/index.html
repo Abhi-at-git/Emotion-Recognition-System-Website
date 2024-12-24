@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Emotion Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Emotion Detection</h1>
+        <div class="choose-option">
+            <h2>Choose an option</h2>
+            <div>
+                <a href="{{ url_for('signup_form') }}"><button>Sign Up</button></a>
+            </div>
+            <div>
+                <a href="{{ url_for('login_form') }}"><button>Login</button></a>
+            </div>
+        </div>
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
